@@ -10,18 +10,22 @@ import android.graphics.Rect;
 
 public abstract class BitmapHandler
 {
-	public static final int	min_mosaic_block_size	= 4;
-
 	public static Bitmap makeMosaic(Bitmap bitmap, Rect targetRect, int blockSize) throws OutOfMemoryError
 	{
+
 		if (bitmap == null || bitmap.getWidth() == 0 || bitmap.getHeight() == 0 || bitmap.isRecycled())
 		{
+			if (null != bitmap)
+			{
+				Logs.showTrace("Bad Bitmap width=" + bitmap.getWidth() + " height=" + bitmap.getHeight()
+						+ " is recycle=" + bitmap.isRecycled());
+			}
 			throw new RuntimeException("bad bitmap to add mosaic");
 		}
 
-		if (blockSize < min_mosaic_block_size)
+		if (0 >= blockSize)
 		{
-			blockSize = min_mosaic_block_size;
+			return bitmap;
 		}
 
 		if (targetRect == null)
