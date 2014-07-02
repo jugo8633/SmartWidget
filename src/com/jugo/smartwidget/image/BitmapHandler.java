@@ -20,7 +20,8 @@ public abstract class BitmapHandler
 				Logs.showTrace("Bad Bitmap width=" + bitmap.getWidth() + " height=" + bitmap.getHeight()
 						+ " is recycle=" + bitmap.isRecycled());
 			}
-			throw new RuntimeException("bad bitmap to add mosaic");
+			//throw new RuntimeException("bad bitmap to add mosaic");
+			return bitmap;
 		}
 
 		if (0 >= blockSize)
