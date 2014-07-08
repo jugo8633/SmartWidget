@@ -90,7 +90,9 @@ public class CalendarWidget extends RelativeLayout
 		gvCalendar.setBackgroundColor(Color.TRANSPARENT);
 		gvCalendar.setNumColumns(7);
 		gvCalendar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-
+		gvCalendar.setHorizontalSpacing(3);
+		gvCalendar.setVerticalSpacing(3);
+		
 		ivArrowLeft = new ImageView(context);
 		ivArrowLeft.setLayoutParams(new LayoutParams(60, LayoutParams.MATCH_PARENT));
 		ivArrowLeft.setImageResource(R.drawable.cal_left_arrow_on);
@@ -125,19 +127,12 @@ public class CalendarWidget extends RelativeLayout
 		llMain.addView(gvCalendar, params2);
 		this.addView(llMain);
 
-		//initCalendar(context, gvCalendar);
 		setGridCellAdapterToDate(context, gvCalendar, month, year);
-	}
-
-	private void initCalendar(Context context, GridView gridView)
-	{
-		adapter = new GridCellAdapter(context, month, year);
-		adapter.notifyDataSetChanged();
-		gridView.setAdapter(adapter);
 	}
 
 	private void setGridCellAdapterToDate(Context context, GridView gridView, int month, int year)
 	{
+		adapter = null;
 		adapter = new GridCellAdapter(context, month, year);
 		_calendar.set(year, month - 1, _calendar.get(Calendar.DAY_OF_MONTH));
 		tvMonthYear.setText(DateFormat.format(dateTemplate, _calendar.getTime()));

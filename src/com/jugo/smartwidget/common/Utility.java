@@ -1,6 +1,8 @@
 package com.jugo.smartwidget.common;
 
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
 public abstract class Utility
@@ -25,5 +27,22 @@ public abstract class Utility
 	{
 		Rect rect = getViewRect(view);
 		return rect.contains(nX, nY);
+	}
+
+	synchronized public static void notify(Handler handler, int nWhat, int nEvent, int nPosition, Object object)
+	{
+		if (null != handler)
+		{
+			Message msg = new Message();
+			msg.what = nWhat;
+			msg.arg1 = nEvent;
+			msg.arg2 = nPosition;
+			msg.obj = object;
+			handler.sendMessage(msg);
+		}
+		else
+		{
+			Logs.showTrace("Event Handler Error: Invalid Handler !!");
+		}
 	}
 }

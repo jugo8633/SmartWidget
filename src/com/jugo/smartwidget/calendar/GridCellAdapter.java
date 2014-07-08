@@ -5,12 +5,14 @@ import java.util.GregorianCalendar;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
+import android.os.Handler;
 import android.util.SparseArray;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -26,6 +28,8 @@ public class GridCellAdapter extends BaseAdapter
 	private int						daysInMonth	= 0;
 	private int						currentDayOfMonth;
 	private int						currentWeekDay;
+	private boolean					mbShowToday	= false;
+	private Handler					theHandler	= null;
 
 	public class Day
 	{
@@ -43,9 +47,10 @@ public class GridCellAdapter extends BaseAdapter
 		}
 	}
 
-	public GridCellAdapter(Context context, int month, int year)
+	public GridCellAdapter(Context context, Handler handler, int month, int year)
 	{
 		super();
+		theHandler = handler;
 		theContext = context;
 		listDay = new SparseArray<Day>();
 		Calendar calendar = Calendar.getInstance();
@@ -82,7 +87,11 @@ public class GridCellAdapter extends BaseAdapter
 		tvDay.setBackgroundColor(Color.WHITE);
 		tvDay.setGravity(Gravity.CENTER);
 		tvDay.setTextSize(32);
-		tvDay.setPadding(1, 20, 1, 20);
+		tvDay.setPadding(1, 10, 1, 10);
+		tvDay.setLayoutParams(new AbsListView.LayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT)));
+
+		tvDay.setOnClickListener(clickListener);
 		return tvDay;
 	}
 
@@ -177,8 +186,16 @@ public class GridCellAdapter extends BaseAdapter
 
 			if (i == getCurrentDayOfMonth())
 			{
-				listDay.append(listDay.size(), new Day(String.valueOf(i), Color.BLUE, getMonthAsString(currentMonth),
-						yy));
+				if (mbShowToday)
+				{
+					listDay.append(listDay.size(), new Day(String.valueOf(i), Color.BLUE,
+							getMonthAsString(currentMonth), yy));
+				}
+				else
+				{
+					listDay.append(listDay.size(), new Day(String.valueOf(i), Color.BLACK,
+							getMonthAsString(currentMonth), yy));
+				}
 			}
 			else
 			{
@@ -194,4 +211,13 @@ public class GridCellAdapter extends BaseAdapter
 					nextYear));
 		}
 	}
+
+	private OnClickListener	clickListener	= new OnClickListener()
+											{
+												@Override
+												public void onClick(View v)
+												{
+
+												}
+											};
 }
