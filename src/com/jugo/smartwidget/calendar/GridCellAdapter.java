@@ -3,6 +3,8 @@ package com.jugo.smartwidget.calendar;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import com.jugo.smartwidget.common.Utility;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
@@ -84,8 +86,13 @@ public class GridCellAdapter extends BaseAdapter
 	{
 		TextView tvDay = new TextView(theContext);
 		Day day = listDay.get(position);
+		tvDay.setTag(day.mstrDay);
 		tvDay.setText(day.mstrDay);
 		tvDay.setTextColor(day.mnColor);
+		if (Color.BLACK == day.mnColor)
+		{
+			tvDay.setOnClickListener(clickListener);
+		}
 		tvDay.setBackgroundColor(Color.WHITE);
 		tvDay.setGravity(Gravity.CENTER);
 		tvDay.setTextSize(32);
@@ -93,7 +100,6 @@ public class GridCellAdapter extends BaseAdapter
 		tvDay.setLayoutParams(new AbsListView.LayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT)));
 
-		tvDay.setOnClickListener(clickListener);
 		return tvDay;
 	}
 
@@ -219,7 +225,10 @@ public class GridCellAdapter extends BaseAdapter
 												@Override
 												public void onClick(View v)
 												{
+													String strDay = (String) v.getTag();
 
+													int nPosition = Integer.valueOf(strDay);
+													Utility.notify(theHandler, DAY_SELECTED, nPosition, 0, null);
 												}
 											};
 }

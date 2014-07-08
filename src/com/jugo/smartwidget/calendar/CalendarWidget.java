@@ -184,6 +184,7 @@ public class CalendarWidget extends RelativeLayout
 													switch (msg.what)
 													{
 													case GridCellAdapter.DAY_SELECTED:
+														Logs.showTrace("Day select: " + msg.arg1);
 														break;
 													}
 												}
