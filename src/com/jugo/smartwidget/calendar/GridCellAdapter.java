@@ -18,18 +18,20 @@ import android.widget.TextView;
 
 public class GridCellAdapter extends BaseAdapter
 {
-	private final int				DAY_OFFSET	= 1;
-	private Context					theContext	= null;
-	public static final String[]	weekdays	= new String[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
-	public final String[]			months		= { "January", "February", "March", "April", "May", "June", "July",
+	public static final int			DAY_SELECTED	= 0;
+
+	private final int				DAY_OFFSET		= 1;
+	private Context					theContext		= null;
+	public static final String[]	weekdays		= new String[] { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+	public final String[]			months			= { "January", "February", "March", "April", "May", "June", "July",
 			"August", "September", "October", "November", "December" };
-	private final int[]				daysOfMonth	= { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	private SparseArray<Day>		listDay		= null;
-	private int						daysInMonth	= 0;
+	private final int[]				daysOfMonth		= { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	private SparseArray<Day>		listDay			= null;
+	private int						daysInMonth		= 0;
 	private int						currentDayOfMonth;
 	private int						currentWeekDay;
-	private boolean					mbShowToday	= false;
-	private Handler					theHandler	= null;
+	private boolean					mbShowToday		= false;
+	private Handler					theHandler		= null;
 
 	public class Day
 	{

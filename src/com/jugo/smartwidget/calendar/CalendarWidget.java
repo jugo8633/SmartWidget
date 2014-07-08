@@ -8,6 +8,8 @@ import com.jugo.smartwidget.common.Logs;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -92,7 +94,7 @@ public class CalendarWidget extends RelativeLayout
 		gvCalendar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		gvCalendar.setHorizontalSpacing(3);
 		gvCalendar.setVerticalSpacing(3);
-		
+
 		ivArrowLeft = new ImageView(context);
 		ivArrowLeft.setLayoutParams(new LayoutParams(60, LayoutParams.MATCH_PARENT));
 		ivArrowLeft.setImageResource(R.drawable.cal_left_arrow_on);
@@ -133,7 +135,7 @@ public class CalendarWidget extends RelativeLayout
 	private void setGridCellAdapterToDate(Context context, GridView gridView, int month, int year)
 	{
 		adapter = null;
-		adapter = new GridCellAdapter(context, month, year);
+		adapter = new GridCellAdapter(context, selfHandler, month, year);
 		_calendar.set(year, month - 1, _calendar.get(Calendar.DAY_OF_MONTH));
 		tvMonthYear.setText(DateFormat.format(dateTemplate, _calendar.getTime()));
 		adapter.notifyDataSetChanged();
@@ -170,6 +172,19 @@ public class CalendarWidget extends RelativeLayout
 															++month;
 														}
 														setGridCellAdapterToDate(theContext, gvCalendar, month, year);
+													}
+												}
+											};
+
+	private Handler			selfHandler		= new Handler()
+											{
+												@Override
+												public void handleMessage(Message msg)
+												{
+													switch (msg.what)
+													{
+													case GridCellAdapter.DAY_SELECTED:
+														break;
 													}
 												}
 											};
