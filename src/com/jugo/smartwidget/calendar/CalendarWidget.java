@@ -23,19 +23,33 @@ import android.widget.TextView;
 
 public class CalendarWidget extends RelativeLayout
 {
-	private LinearLayout		llMain			= null;
-	private LinearLayout		llMonthYear		= null;
-	private LinearLayout		llCalendarDays	= null;
-	private GridView			gvCalendar		= null;
-	private ImageView			ivArrowLeft		= null;
-	private ImageView			ivArrowRight	= null;
-	private ImageView			ivCalendarDays	= null;
-	private TextView			tvMonthYear		= null;
-	private GridCellAdapter		adapter			= null;
-	private static final String	dateTemplate	= "MMMM yyyy";
-	private int					month, year;
-	private Calendar			_calendar;
-	private Context				theContext		= null;
+	private LinearLayout			llMain					= null;
+	private LinearLayout			llMonthYear				= null;
+	private LinearLayout			llCalendarDays			= null;
+	private GridView				gvCalendar				= null;
+	private ImageView				ivArrowLeft				= null;
+	private ImageView				ivArrowRight			= null;
+	private ImageView				ivCalendarDays			= null;
+	private TextView				tvMonthYear				= null;
+	private GridCellAdapter			adapter					= null;
+	private static final String		dateTemplate			= "MMMM yyyy";
+	private int						month, year;
+	private Calendar				_calendar;
+	private Context					theContext				= null;
+	private OnDaySelectedListener	onDaySelectedListener	= null;
+
+	public static interface OnDaySelectedListener
+	{
+		void onDaySelected(int nDay);
+	}
+
+	public void setOnDaySelectedListener(OnDaySelectedListener listener)
+	{
+		if (null != listener)
+		{
+			onDaySelectedListener = listener;
+		}
+	}
 
 	public CalendarWidget(Context context)
 	{
@@ -142,6 +156,30 @@ public class CalendarWidget extends RelativeLayout
 		gridView.setAdapter(adapter);
 	}
 
+	public void showMonthYear(boolean bShow)
+	{
+		if (bShow)
+		{
+			llMonthYear.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			llMonthYear.setVisibility(View.GONE);
+		}
+	}
+
+	public void showWeekDay(boolean bShow)
+	{
+		if (bShow)
+		{
+			llCalendarDays.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			llCalendarDays.setVisibility(View.GONE);
+		}
+	}
+
 	private OnClickListener	onClickListener	= new OnClickListener()
 											{
 												@Override
@@ -184,6 +222,10 @@ public class CalendarWidget extends RelativeLayout
 													switch (msg.what)
 													{
 													case GridCellAdapter.DAY_SELECTED:
+														if (null != onDaySelectedListener)
+														{
+															onDaySelectedListener.onDaySelected(msg.arg1);
+														}
 														Logs.showTrace("Day select: " + msg.arg1);
 														break;
 													}

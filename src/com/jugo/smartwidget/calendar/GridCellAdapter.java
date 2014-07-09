@@ -3,6 +3,7 @@ package com.jugo.smartwidget.calendar;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import com.jugo.smartwidget.common.Logs;
 import com.jugo.smartwidget.common.Utility;
 
 import android.content.Context;
@@ -226,7 +227,6 @@ public class GridCellAdapter extends BaseAdapter
 												public void onClick(View v)
 												{
 													String strDay = (String) v.getTag();
-
 													int nPosition = Integer.valueOf(strDay);
 													Utility.notify(theHandler, DAY_SELECTED, nPosition, 0, null);
 												}
