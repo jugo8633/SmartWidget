@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res/com.jugo.smartwidget">
+
+    <ScrollView
+        android:id="@+id/scrollViewMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <com.jugo.smartwidget.button.ShapButton
+                android:id="@+id/shapButton1"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                app:borderColor="@android:color/holo_blue_bright"
+                app:borderColorClick="@android:color/holo_red_light"
+                app:borderSize="2dp"
+                app:text="Shap Button"
+                app:textColor="@android:color/holo_blue_dark"
+                app:textColorClick="@android:color/holo_red_light"
+                app:textSize="24sp" />
+
+            <com.jugo.smartwidget.button.TabButton
+                android:id="@+id/tabButton1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp" >
+
+            </com.jugo.smartwidget.button.TabButton>
+
+            <Button
+                android:id="@+id/buttonCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Calebdar" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
