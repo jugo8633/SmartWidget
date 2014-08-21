@@ -3,5 +3,9 @@
 
     <string name="app_name">SmartWidgetTester</string>
     <string name="hello_world">Hello world!</string>
+    <string name="test_1">測試一</string>
+    <string name="test_2">測試二</string>
+    <string name="test_3">測試三</string>
+    <string name="test_4">測試四</string>
 
 </resources>

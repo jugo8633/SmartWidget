@@ -2,11 +2,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}" xmlns:app="http://schemas.android.com/apk/res/dev.jugo.smartwidgettester">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <ScrollView
+        android:id="@+id/scrollViewmain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp" >
+
+            <dev.jugo.smartwidget.button.ShapButton
+                android:id="@+id/shapButton1"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                app:borderColor="@android:color/holo_green_dark"
+                app:borderColorClick="@android:color/holo_green_light"
+                app:borderSize="2dp"
+                app:text="Shap Button"
+                app:textColor="@android:color/holo_blue_dark"
+                app:textColorClick="@android:color/holo_blue_bright"
+                app:textSize="24sp"
+                app:textType="bold" />
+
+            <dev.jugo.smartwidget.button.TabButton
+                android:id="@+id/tabButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center" >
+            </dev.jugo.smartwidget.button.TabButton>
+
+            <dev.jugo.smartwidget.calendar.CalendarWidget
+                android:id="@+id/calendarWidget1"
+                android:layout_width="wrap_content"
+                android:layout_height="450dp"
+                android:layout_marginTop="20dp" >
+
+            </dev.jugo.smartwidget.calendar.CalendarWidget>
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
