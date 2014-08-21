@@ -45,6 +45,12 @@
                 android:layout_marginTop="20dp" >
 
             </dev.jugo.smartwidget.calendar.CalendarWidget>
+
+            <dev.jugo.smartwidget.button.SwitchButton
+                android:id="@+id/SwitchButton1"
+                android:layout_width="80dp"
+                android:layout_height="40dp" />
+
         </LinearLayout>
 
     </ScrollView>

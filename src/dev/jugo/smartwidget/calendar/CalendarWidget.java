@@ -86,7 +86,14 @@ public class CalendarWidget extends RelativeLayout
 		llMain.setOrientation(LinearLayout.VERTICAL);
 
 		llMonthYear = new LinearLayout(context);
-		llMonthYear.setBackgroundResource(R.drawable.calendar_bg_orange);
+		try
+		{
+			llMonthYear.setBackgroundResource(R.drawable.calendar_bg_orange);
+		}
+		catch(Exception e)
+		{
+			
+		}
 		llMonthYear.setPadding(20, 2, 20, 2);
 
 		llCalendarDays = new LinearLayout(context);
